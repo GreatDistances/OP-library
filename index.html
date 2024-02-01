@@ -11,10 +11,10 @@
     <div id="tableContainer"></div>
     <dialog id="newBookDialog">
         <p>Add a book to the library</p>
-        <form>
-            <label for="inputAuthor">Author:</label><input type="text"></input>
-            <label for="inputTitle">Title:</label><input type="text"></input>
-            <label for="inputTitle">Number of Pages:</label><input type="number"></input>
+        <form id="newBookForm">
+            <label for="inputAuthor">Author:</label><input type="text" name="author"></input>
+            <label for="inputTitle">Title:</label><input type="text" name="title"></input>
+            <label for="inputTitle">Number of Pages:</label><input type="number" name="numPages"></input>
         </form>
         <button id="submitNewBookBtn">Submit</button>
         <button id="newBookDialogCancelBtn">[ X ]</button>
