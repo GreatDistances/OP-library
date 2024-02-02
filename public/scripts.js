@@ -20,82 +20,82 @@ let nextCatalogNum = 1000;
 const newBookBtn = document.getElementById("newBookBtn");
 newBookBtn.addEventListener("click", addNewBook);
 
+const noBooksInLibrary = document.createElement("p");
+const sectionTwo = document.getElementById("sectionTwo");
+
 displayTable(myLibrary);
 
 function displayTable(myLibrary) {
-  const tableContainer = document.getElementById("tableContainer");
-  tableContainer.innerText = "";
-  const bookTable = document.createElement("table");
-  bookTable.style.width = "100%";
-
-  const headerRow = document.createElement("tr");
-  const headerRowText = [
-    "Catalog No",
-    "Author",
-    "Title",
-    "Pages",
-    "Read",
-    "Remove",
-  ];
-
-  for (let i = 0; i < headerRowText.length; i++) {
-    let cell = document.createElement("td");
-    cell.innerText = headerRowText[i];
-    headerRow.append(cell);
-  }
-  bookTable.append(headerRow);
-
-  tableContainer.append(bookTable);
+  const tableBody = document.getElementById("tableBody");
+  tableBody.innerText = "";
 
   if (myLibrary.length > 0) {
+    noBooksInLibrary.remove();
     for (i = 0; i < myLibrary.length; i++) {
     const thisNumCatalog = myLibrary[i].numCatalog;
       const thisRow = document.createElement("tr");
       thisRow.style.width = "100%";
+      thisRow.classList.add("odd:bg-white", "odd:dark:bg-gray-900", "even:bg-gray-50", "even:dark:bg-gray-800", "border-b", "dark:border-gray-700");
 
       // catalog number column
       let cell = document.createElement("td");
       cell.innerText = myLibrary[i].numCatalog;
+      cell.scope = "col";
+      cell.classList.add("px-6", "py-3");
       thisRow.append(cell);
 
       // author column
       cell = document.createElement("td");
       cell.innerText = myLibrary[i].author;
+      cell.scope = "col";
+      cell.classList.add("px-6", "py-3");
       thisRow.append(cell);
 
       // title column
       cell = document.createElement("td");
-
+      cell.scope = "col";
+      cell.classList.add("px-6", "py-3");
       cell.innerText = myLibrary[i].title;
       thisRow.append(cell);
 
       // numPages column
       cell = document.createElement("td");
       cell.innerText = myLibrary[i].numPages;
+      cell.scope = "col";
+      cell.classList.add("px-6", "py-3");
       thisRow.append(cell);
 
       // hasReadButton column
       cell = document.createElement("td");
+      cell.scope = "col";
+      cell.classList.add("px-6", "py-3");
       thisRow.append(cell);
       const hasReadButton = document.createElement("button");
       cell.append(hasReadButton);
-      hasReadButton.classList.add("text-sm", "bg-blue-500", "text-white", "font-bold", "px-2", "py-1", "rounded");
+      myLibrary[i].hasRead ? hasReadButton.classList.add("text-green-600", "border-2", "border-green-600") : hasReadButton.classList.add("text-red-500", "border-2", "border-red-500");
+      hasReadButton.classList.add("text-sm", "font-bold", "px-2", "py-1", "rounded");
       hasReadButton.innerText = myLibrary[i].hasRead;
       hasReadButton.addEventListener("click", function () {
         hasRead = hasReadButton.innerText;
         if (hasRead === "true") {
           hasReadButton.innerText = "false";
+          hasReadButton.classList.remove("text-green-600", "border-green-600")
+          hasReadButton.classList.add("text-red-500", "border-red-500");
         } else if (hasRead === "false") {
           hasReadButton.innerText = "true";
+          hasReadButton.classList.remove("text-red-500", "border-red-500")
+          hasReadButton.classList.add("text-green-600", "border-green-600");
         }
       });
 
       // removeButton column
       cell = document.createElement("td");
+      cell.scope = "col";
+      cell.classList.add("px-6", "py-3");
       thisRow.append(cell);
       removeButton = document.createElement("button");
       removeButton.innerText = "Remove";
-      removeButton.classList.add("text-sm", "bg-red-500", "text-white", "font-bold", "px-2", "py-1", "rounded");
+      removeButton.classList.add("text-sm", "bg-red-600", "text-white", "font-normal", "px-2", "py-1", "rounded");
       cell.append(removeButton);
       removeButton.addEventListener("click", function() {
         const indexToRemove = myLibrary.findIndex(book => book.numCatalog === thisNumCatalog);
@@ -104,13 +104,13 @@ function displayTable(myLibrary) {
             displayTable(myLibrary); // Refresh the table display
         }
     });
-    tableContainer.append(thisRow);
+    tableBody.append(thisRow);
     }
   }
   else {
-    const noBooksInLibrary = document.createElement("p");
     noBooksInLibrary.innerText = "NO BOOKS IN LIBRARY";
-    tableContainer.append(noBooksInLibrary);
+    noBooksInLibrary.classList.add("text-red-500", "text-2xl", "text-center", "font-bold", "my-10");
+    sectionTwo.append(noBooksInLibrary);
   }
 }
 
