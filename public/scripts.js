@@ -1,16 +1,16 @@
 const myLibrary = [
     {
-        numCatalog: 0,
-        author: "Author1",
-        title: "Title1",
-        numPages: 111,
+        numCatalog: 998,
+        author: "Proust, Marcel",
+        title: "Swann's Way",
+        numPages: 468,
         hasRead: false,
       },
       {
-        numCatalog: 1,
-        author: "Author2",
-        title: "Title2",
-        numPages: 222,
+        numCatalog: 999,
+        author: "Blume, Judy",
+        title: "Freckle Juice",
+        numPages: 64,
         hasRead: true,
       },
 ];
