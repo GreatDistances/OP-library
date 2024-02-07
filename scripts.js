@@ -119,12 +119,14 @@ const newBookDialogCancelBtn = document.getElementById(
   "newBookDialogCancelBtn"
 );
 
-function Book(author, title, numPages, hasRead) {
-  this.numCatalog = nextCatalogNum;
-  this.author = author;
-  this.title = title;
-  this.numPages = numPages;
-  this.hasRead = hasRead;
+class Book {
+  constructor(author, title, numPages, hasRead) {
+    this.numCatalog = nextCatalogNum;
+    this.author = author;
+    this.title = title;
+    this.numPages = numPages;
+    this.hasRead = hasRead;
+  }
 }
 
 function addNewBook() {
